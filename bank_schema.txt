@@ -1,0 +1,25 @@
+CREATE TABLE branches (
+        branch_id TEXT PRIMARY KEY,
+        branch_name TEXT NOT NULL,
+        city TEXT NOT NULL,
+        state TEXT NOT NULL,
+        region TEXT NOT NULL
+    )
+
+CREATE TABLE customers (
+        customer_id TEXT PRIMARY KEY,
+        branch_id TEXT NOT NULL,
+        full_name TEXT NOT NULL,
+        customer_segment TEXT NOT NULL,
+        join_date TEXT NOT NULL,
+        FOREIGN KEY (branch_id) REFERENCES branches(branch_id)
+    )
+
+CREATE TABLE accounts (
+        account_id TEXT PRIMARY KEY,
+        customer_id TEXT NOT NULL,
+        account_type TEXT NOT NULL,
+        balance REAL NOT NULL,
+        currency TEXT DEFAULT 'MYR',
+        FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    )
